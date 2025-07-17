@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\ShowDataController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <COMReference Include="Inventor">
       <WrapperTool>tlbimp</WrapperTool>
       <VersionMinor>0</VersionMinor>
@@ -17,6 +21,10 @@
       <Isolated>false</Isolated>
       <EmbedInteropTypes>true</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NSubstitute" Version="5.3.0" />
   </ItemGroup>
 
 </Project>
