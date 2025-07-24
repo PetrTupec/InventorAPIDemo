@@ -1,6 +1,4 @@
 ﻿using InventorAPIDemoApp.Models;
-using System.Text;
-using System.Text.Json;
 
 namespace InventorAPIDemoApp.Utils
 {
@@ -8,7 +6,8 @@ namespace InventorAPIDemoApp.Utils
     {
         private readonly string defaultOutputDirectory;
 
-        public FileUtils() {
+        public FileUtils()
+        {
             defaultOutputDirectory = Path.Combine(
                     Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                     "ExportedData");
@@ -16,6 +15,8 @@ namespace InventorAPIDemoApp.Utils
 
         private string CreateFullOutputPath(string extension, string outputDirectory)
         {
+            outputDirectory ??= defaultOutputDirectory;
+
             if (!Directory.Exists(outputDirectory))
                 Directory.CreateDirectory(outputDirectory);
 
@@ -24,23 +25,19 @@ namespace InventorAPIDemoApp.Utils
             return Path.Combine(outputDirectory, fileName);
         }
 
-        public string SaveAsJson(object data, string outputDirectory = null)
+        public string SaveAsJson(BaseModel data, string outputDirectory = null)
         {
-            outputDirectory ??= defaultOutputDirectory;
-
             string fullOutputPath = CreateFullOutputPath("json", outputDirectory);
-            string json = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });
 
-            File.WriteAllText(fullOutputPath, json);
-            
+            File.WriteAllText(fullOutputPath, data.ToJson());
+
             return fullOutputPath;
         }
 
-        public string SaveAsCsv(IDataModel data, string outputDirectory = null)
+        public string SaveAsCsv(BaseModel data, string outputDirectory = null)
         {
-            outputDirectory ??= defaultOutputDirectory;
-
             string fullOutputPath = CreateFullOutputPath("csv", outputDirectory);
+
             File.WriteAllText(fullOutputPath, data.ToCsv());
 
             return fullOutputPath;

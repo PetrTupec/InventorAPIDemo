@@ -2,17 +2,16 @@
 
 namespace InventorAPIDemoApp.Models
 {
-    public class ModelData : IDataModel
+    public class ModelData : BaseModel
     {
-        public string Name { get; set; }
-        public string Material { get; set; }
-        public double MassKg { get; set; }
-        public double VolumeCm3 { get; set; }
-        public double Width { get; set; }
-        public double Height { get; set; }
-        public double Depth { get; set; }
-        public string Author { get; set; }
-        public DateTime DateCreated { get; set; }
+        public string Material { get; private set; }
+        public double MassKg { get; private set; }
+        public double VolumeCm3 { get; private set; }
+        public double Width { get; private set; }
+        public double Height { get; private set; }
+        public double Depth { get; private set; }
+        public string Author { get; private set; }
+        public DateTime DateCreated { get; private set; }
 
         public ModelData(string name, string material, double massKg, double volumeCm3, double width, double height, double depth, string author, DateTime dateCreated)
         {
@@ -40,7 +39,7 @@ namespace InventorAPIDemoApp.Models
                $"Created: {DateCreated:yyyy-MM-dd}\n";
         }
 
-        public string ToCsv()
+        public override string ToCsv()
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("Name;Material;MassKg;VolumeCm3;Width;Height;Depth;Author;DateCreated");

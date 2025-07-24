@@ -23,7 +23,7 @@ namespace InventorAPIDemoApp.Controllers
             return inventorManager.OpenDocument(filePath);
         }
 
-        public IDataModel ReadDocument(Document openDocument)
+        public BaseModel ReadDocument(Document openDocument)
         {
             if (openDocument == null)
             {

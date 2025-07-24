@@ -12,7 +12,7 @@ namespace InventorAPIDemoApp.Controllers
             fileUtils = new FileUtils();
         }
 
-        public string ExportData(IDataModel documentData, string format)
+        public string ExportData(BaseModel documentData, string format)
         {
             return format switch
             {

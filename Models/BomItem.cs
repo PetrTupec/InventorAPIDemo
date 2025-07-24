@@ -2,12 +2,11 @@
 
 namespace InventorAPIDemoApp.Models
 {
-    public class BomItem : IDataModel
+    public class BomItem : BaseModel
     {
-        public string Name { get; set; }
-        public List<BomPart> PartList { get; set; }
+        public List<BomPart> PartList { get; private set; }
 
-        public BomItem(string name, List<BomPart> bomItems) 
+        public BomItem(string name, List<BomPart> bomItems)
         {
             Name = name;
             PartList = bomItems;
@@ -32,7 +31,7 @@ namespace InventorAPIDemoApp.Models
             return sb.ToString();
         }
 
-        public string ToCsv()
+        public override string ToCsv()
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("PartName;Quantity");
@@ -44,6 +43,5 @@ namespace InventorAPIDemoApp.Models
 
             return sb.ToString();
         }
-
     }
 }

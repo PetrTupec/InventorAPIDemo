@@ -33,7 +33,7 @@ namespace InventorAPIDemoApp
                 ui.WriteDocumentOpen();
 
                 ui.WriteReadingDocument();
-                IDataModel documentData = documentController.ReadDocument(openDocument);
+                BaseModel documentData = documentController.ReadDocument(openDocument);
                 ui.WriteReadingDone();
 
                 ui.WriteMessage(documentData.ToString());

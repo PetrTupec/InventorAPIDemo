@@ -59,7 +59,7 @@ namespace InventorAPIDemoApp.Services
 
                 foreach (BOMRow row in bomView.BOMRows)
                 {
-                    string partName = row.ComponentOccurrences[1].Name;
+                    string partName = row.ComponentDefinitions[1].Document.DisplayName;
                     int quantity = row.ItemQuantity;
 
                     bomParts.Add(new BomPart(partName, quantity));
@@ -70,8 +70,7 @@ namespace InventorAPIDemoApp.Services
                 throw new InvalidOperationException("Failed to get BOM data.", ex);
             }
 
-            return new BomItem(name, bomParts); ;
+            return new BomItem(name, bomParts);
         }
-
     }
 }

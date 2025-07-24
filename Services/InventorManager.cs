@@ -4,7 +4,7 @@ namespace InventorAPIDemoApp.Services
 {
     public class InventorManager
     {
-        public Application InventorApp { get; private set; }
+        private Application InventorApp { get; set; }
 
         public InventorManager()
         {

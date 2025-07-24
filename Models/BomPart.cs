@@ -1,23 +1,22 @@
-﻿    namespace InventorAPIDemoApp.Models
+﻿namespace InventorAPIDemoApp.Models
+{
+    public class BomPart : BaseModel
     {
-        public class BomPart : IDataModel
+        public int Quantity { get; private set; }
+
+        public BomPart(string name, int quantity)
         {
-            public string Name { get; set; }
-            public int Quantity { get; set; }
+            Name = name;
+            Quantity = quantity;
+        }
+        public override string ToString()
+        {
+            return $"{Name} X {Quantity}";
+        }
 
-            public BomPart(string name, int quantity)
-            {
-                Name = name;
-                Quantity = quantity;
-            }
-            public override string ToString()
-            {
-                return $"{Name} X {Quantity}";
-            }
-
-            public string ToCsv()
-            {
-                return $"{Name};{Quantity}";
-            }
+        public override string ToCsv()
+        {
+            return $"{Name};{Quantity}";
         }
     }
+}
