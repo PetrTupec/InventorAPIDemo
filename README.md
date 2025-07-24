@@ -1,21 +1,28 @@
 ﻿# InventorApiDemoApp
 
-Tato aplikace je demo projekt vytvořený za účelem seznámení se s **Autodesk Inventor API** a prvním programováním v **C#**.
+Tato aplikace je demo projekt vytvořený za účelem seznámení se s **Autodesk Inventor API** a prvním programováním v **C# .NET**.
 
 ## Cíl projektu
 
 - Vyzkoušet základní práci s COM objekty v prostředí Autodesk Inventor.
-- Získat a zobrazit základní informace o modelech `.ipt` a sestavách `.iam`.
+- Získat a zobrazit vybrané informace o modelech `.ipt` a sestavách `.iam`.
+- exportovat data do souboru `.json` a `.csv`.
 
 ## Průběh běhu aplikace
 
-1. Aplikace spustí Autodesk Inventor na pozadí.
+1. Aplikace spustí novou instanci Autodesk Inventor na pozadí.
 2. Uživatel je vyzván k zadání úplné cesty k souboru typu `.ipt` (model) nebo `.iam` (sestava).
 3. Po zadání cesty aplikace otevře dokument v Inventoru.
 4. Podle typu souboru proběhne:
-   - `.ipt`: načtení a výpis vybraných metadat modelu.
-   - `.iam`: načtení a výpis položek kusovníku BOM.
-5. Po zpracování dat aplikace ukončí svoji instanci Inventoru a ukončí se.
+   - `.ipt`: Načtení a výpis vybraných metadat modelu.
+   - `.iam`: Načtení a výpis položek kusovníku (BOM).
+5. Aplikace se zeptá uživatele, zda chce pokračovat exportem dat.
+   - Pokud uživatel nechce pokračovat, program pokračuje bodem 8.
+6. Pokud chce uživatel pokračovat, je vyzván k zadání požadovaného formátu exportu `.json` nebo `.csv`.
+7. Po zadání jednoho z podporovaných formátů se data exportují do výstupního souboru.
+8. Aplikace ukončí svoji instanci Inventoru a sama se ukončí.
+
+Pokud za běhu programu nastane chyba, aplikace zobrazí chybovou zprávu a bezpečně se ukončí (pokračuje bodem 8).
 
 ## Použité technologie
 
@@ -25,7 +32,7 @@ Tato aplikace je demo projekt vytvořený za účelem seznámení se s **Autodes
 
 ## Požadavky
 
-- Prostředí Windows
+- Prostředí Windows (testováno na Windows 10)
 - Naistalovaný Autodesk Inventor (testováno na české verzi Autodesk Inventor Proffesional 2026)
 
 ## Instalace a spuštění
@@ -44,7 +51,7 @@ Tato aplikace je demo projekt vytvořený za účelem seznámení se s **Autodes
 ## Možné problémy
 
 - **Pevně nastavený název BOM pohledu ("Strukturované")**:  
-  V metodě `GetBOM()` je název BOM pohledu nastaven napevno na `"Strukturované"`, což odpovídá české verzi Inventoru. Pokud aplikaci spustíte s anglickou verzí Inventoru, bude nutné nahradit tento název řetězcem `"Structured"`:
+  V metodě `DataExtractor.GetBomItems(Document openDocument)` je název BOM pohledu nastaven napevno na `"Strukturované"`, což odpovídá české verzi Inventoru. Pokud aplikaci spustíte s anglickou verzí Inventoru, bude nutné nahradit tento název řetězcem `"Structured"`:
   
   ```csharp
   BOMView bomView = bom.BOMViews["Structured"];
