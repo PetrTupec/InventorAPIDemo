@@ -39,7 +39,7 @@ Pokud za běhu programu nastane chyba, aplikace zobrazí chybovou zprávu a bezp
 
 1. Naklonování repozitáře:
    ```bash
-   git clone https://github.com/PetrTupec/robot-dashboard-example.git
+   git clone https://github.com/PetrTupec/InventorAPIDemo.git
    ```
 
 2. Otevření projektu ve Visual studiu:
